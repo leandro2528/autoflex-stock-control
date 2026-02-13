@@ -1,0 +1,20 @@
+CREATE TABLE products (
+  id SERIAL PRIMARY KEY,
+  name VARCHAR(255) NOT NULL,
+  price DECIMAL(10,2) NOT NULL,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE raw_materials (
+  id SERIAL PRIMARY KEY,
+  name VARCHAR(255) NOT NULL,
+  stock_quantity INTEGER NOT NULL,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE product_materials (
+  id SERIAL PRIMARY KEY,
+  product_id INTEGER REFERENCES products(id) ON DELETE CASCADE,
+  raw_material_id INTEGER REFERENCES raw_materials(id) ON DELETE CASCADE,
+  quantity_required INTEGER NOT NULL
+);
