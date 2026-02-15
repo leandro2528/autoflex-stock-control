@@ -4,12 +4,14 @@ const pool = require("./config/database");
 
 const productRoutes = require("./routes/product.routes");
 const rawMaterialRoutes = require('./routes/rawMaterial.routes');
+const productionRoutes = require('./routes/production.routes');
 
 const app = express(); 
 
 app.use(cors());
 app.use(express.json());
 app.use('/raw_materials', rawMaterialRoutes);
+app.use(productionRoutes);
 
 app.use("/products", productRoutes);
 
