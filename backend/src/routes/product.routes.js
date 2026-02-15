@@ -4,4 +4,7 @@ const productController = require('../controllers/product.controller');
 
 router.post('/', productController.createProduct);
 
+// ✅ Nova rota GET
+router.get('/', productController.getProducts);
+
 module.exports = router;

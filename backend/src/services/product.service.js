@@ -27,7 +27,21 @@ const createProductWithMaterials = async (data) => {
     client.release();
   }
 };
+//CHAMANDO MODEL
+const { getAllProductsWithMaterials } = require('../models/product.model');
+
+const getProducts = async () => {
+  const client = await pool.connect();
+  try {
+    const products = await getAllProductsWithMaterials(client);
+    return products;
+  } finally {
+    client.release();
+  }
+};
 
 module.exports = {
-  createProductWithMaterials
+  createProductWithMaterials,
+  getProducts
 };
+

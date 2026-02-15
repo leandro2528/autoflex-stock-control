@@ -32,6 +32,21 @@ const createProduct = async (req, res) => {
   }
 };
 
-module.exports = {
-  createProduct
+//ADD MÉTODO GETPRODUCT
+
+
+const getProducts = async (req, res) => {
+  try {
+    const products = await productService.getProducts();
+    res.json(products);
+  } catch (error) {
+    console.error('ERROR DETAIL:', error);
+    res.status(500).json({ error: error.message });
+  }
 };
+
+module.exports = {
+  createProduct,
+  getProducts
+};
+
