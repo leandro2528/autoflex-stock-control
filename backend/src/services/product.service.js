@@ -1,4 +1,5 @@
 const pool = require('../config/database');
+const { getProducibleProducts } = require('../models/product.model');
 const {
   createProduct,
   insertProductMaterials
@@ -40,8 +41,18 @@ const getProducts = async () => {
   }
 };
 
+const listProducibleProducts = async () => {
+  const client = await pool.connect();
+  try {
+    return await getProducibleProducts(client);
+  } finally {
+    client.release();
+  }
+};
+
 module.exports = {
   createProductWithMaterials,
-  getProducts
+  getProducts,
+  listProducibleProducts
 };
 

@@ -1,7 +1,8 @@
-const pool = require('../config/database');
-//Cria
+// src/models/rawMaterial.model.js
+
 const createRawMaterial = async (client, data) => {
   const { name, stock_quantity } = data;
+
   if (!name || stock_quantity === undefined) {
     throw new Error('Missing required fields: name or stock_quantity');
   }
@@ -16,7 +17,6 @@ const createRawMaterial = async (client, data) => {
   return result.rows[0];
 };
 
-// Lista
 const getAllRawMaterials = async (client) => {
   const result = await client.query(`
     SELECT id, name, stock_quantity, created_at
@@ -26,7 +26,6 @@ const getAllRawMaterials = async (client) => {
   return result.rows;
 };
 
-// Atualiza
 const updateRawMaterial = async (client, id, data) => {
   const { name, stock_quantity } = data;
 
@@ -42,7 +41,6 @@ const updateRawMaterial = async (client, id, data) => {
   return result.rows[0];
 };
 
-// Exclui
 const deleteRawMaterial = async (client, id) => {
   await client.query(`DELETE FROM raw_materials WHERE id = $1`, [id]);
   return { message: 'Deleted successfully' };

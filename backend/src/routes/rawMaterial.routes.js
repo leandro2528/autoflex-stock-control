@@ -1,10 +1,10 @@
 const express = require('express');
 const router = express.Router();
-const rawMaterialController = require('../controllers/rawMaterial.controller');
+const controller = require('../controllers/rawMaterial.controller');
 
-router.post('/', rawMaterialController.createRawMaterial);
-router.get('/', rawMaterialController.getRawMaterials);
-router.put('/:id', rawMaterialController.updateRawMaterial);
-router.delete('/:id', rawMaterialController.deleteRawMaterial);
+router.post('/', controller.createRawMaterial);
+router.get('/', controller.getRawMaterials);
+router.put('/:id', controller.updateRawMaterial);
+router.delete('/:id', controller.deleteRawMaterial);
 
-module.exports = router;  
+module.exports = router;

@@ -1,9 +1,11 @@
+// src/controllers/rawMaterial.controller.js
+
 const rawMaterialService = require('../services/rawMaterial.service');
 
 const createRawMaterial = async (req, res) => {
   try {
-    const rm = await rawMaterialService.createRawMaterialService(req.body);
-    res.status(201).json(rm);
+    const material = await rawMaterialService.createRawMaterialService(req.body);
+    res.status(201).json(material);
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
@@ -11,8 +13,8 @@ const createRawMaterial = async (req, res) => {
 
 const getRawMaterials = async (req, res) => {
   try {
-    const rms = await rawMaterialService.getRawMaterialsService();
-    res.json(rms);
+    const materials = await rawMaterialService.getRawMaterialsService();
+    res.json(materials);
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
@@ -20,8 +22,11 @@ const getRawMaterials = async (req, res) => {
 
 const updateRawMaterial = async (req, res) => {
   try {
-    const rm = await rawMaterialService.updateRawMaterialService(req.params.id, req.body);
-    res.json(rm);
+    const material = await rawMaterialService.updateRawMaterialService(
+      req.params.id,
+      req.body
+    );
+    res.json(material);
   } catch (error) {
     res.status(500).json({ error: error.message });
   }

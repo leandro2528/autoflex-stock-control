@@ -1,3 +1,5 @@
+// src/services/rawMaterial.service.js
+
 const pool = require('../config/database');
 const {
   createRawMaterial,
@@ -9,8 +11,7 @@ const {
 const createRawMaterialService = async (data) => {
   const client = await pool.connect();
   try {
-    const rm = await createRawMaterial(client, data);
-    return rm;
+    return await createRawMaterial(client, data);
   } finally {
     client.release();
   }

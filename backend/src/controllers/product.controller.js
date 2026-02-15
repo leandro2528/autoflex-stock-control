@@ -41,8 +41,18 @@ const getProducts = async (req, res) => {
   }
 };
 
+const getProducibleProducts = async (req, res) => {
+  try {
+    const products = await productService.listProducibleProducts();
+    res.json(products);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+
 module.exports = {
   createProduct,
-  getProducts
+  getProducts,
+  getProducibleProducts
 };
 

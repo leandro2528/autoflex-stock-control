@@ -76,8 +76,29 @@ const getAllProductsWithMaterials = async (client) => {
   return Object.values(productsMap);
 };
 
+// RF004 - produtos produzidos
+const getProducibleProducts = async (client) => {
+  const query = `
+    SELECT
+      p.id AS product_id,
+      p.name,
+      p.price,
+      MIN(rm.stock_quantity / pm.quantity_required) AS max_quantity
+    FROM products p
+    JOIN product_materials pm ON pm.product_id = p.id
+    JOIN raw_materials rm ON rm.id = pm.raw_material_id
+    GROUP BY p.id, p.name, p.price
+    HAVING MIN(rm.stock_quantity / pm.quantity_required) > 0
+    ORDER BY p.price DESC;
+  `;
+
+  const result = await client.query(query);
+  return result.rows;
+};
+
 module.exports = {
   createProduct,
   insertProductMaterials,
-  getAllProductsWithMaterials
+  getAllProductsWithMaterials,
+  getProducibleProducts
 };
