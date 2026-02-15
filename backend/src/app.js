@@ -3,15 +3,17 @@ const cors = require("cors");
 const pool = require("./config/database");
 
 const productRoutes = require("./routes/product.routes");
+const rawMaterialRoutes = require('./routes/rawMaterial.routes');
 
-const app = express(); // ✅ ESSA LINHA É O PROBLEMA RESOLVIDO
+const app = express(); 
 
 app.use(cors());
 app.use(express.json());
+app.use('/raw_materials', rawMaterialRoutes);
 
 app.use("/products", productRoutes);
 
-// rota raiz (diagnóstico simples e seguro)
+
 app.get("/", async (req, res) => {
   try {
     const result = await pool.query(`

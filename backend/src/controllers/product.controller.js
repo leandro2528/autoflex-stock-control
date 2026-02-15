@@ -1,19 +1,17 @@
-// src/controllers/product.controller.js
-
 const productService = require('../services/product.service');
 
 const createProduct = async (req, res) => {
   try {
     const data = req.body;
 
-    // Validação mínima
+    // Validação 
     if (!data || !data.name || !data.price) {
       return res.status(400).json({
         error: "Missing required fields: name and price"
       });
     }
 
-    // Se houver materiais, garantir que seja array
+    // Se materiais = array
     if (data.materials && !Array.isArray(data.materials)) {
       return res.status(400).json({
         error: "Materials must be an array"
@@ -32,9 +30,7 @@ const createProduct = async (req, res) => {
   }
 };
 
-//ADD MÉTODO GETPRODUCT
-
-
+//Add geProduct
 const getProducts = async (req, res) => {
   try {
     const products = await productService.getProducts();

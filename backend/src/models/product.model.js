@@ -50,7 +50,7 @@ const getAllProductsWithMaterials = async (client) => {
 
   const result = await client.query(query);
 
-  // Transformar o resultado em objeto com array de matérias-primas
+  // Resultado obj com array de matérias-primas
   const productsMap = {};
 
   result.rows.forEach(row => {

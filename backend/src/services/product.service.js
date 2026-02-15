@@ -27,7 +27,7 @@ const createProductWithMaterials = async (data) => {
     client.release();
   }
 };
-//CHAMANDO MODEL
+//Chaama model
 const { getAllProductsWithMaterials } = require('../models/product.model');
 
 const getProducts = async () => {
