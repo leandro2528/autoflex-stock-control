@@ -53,11 +53,7 @@ Check producible products by stock
 
 The API was tested using Insomnia.
 <!-- Inserir imagens dos testes com insomnia -->
-![Insomnia GET](./images/img01.png)
-![Insomnia GET](./images/img02.png)
-![Insomnia GET](./images/img03.png)
-![System Diagram](images/img01.png)
-
+<img src="images/img01.png" />
 
 ## Run the Project
 npm install
