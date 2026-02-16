@@ -5,8 +5,16 @@ function RawMaterials() {
   const [materials, setMaterials] = useState([]);
   const [loading, setLoading] = useState(true);
 
+  // estados do formulário
+  const [name, setName] = useState('');
+  const [stockQuantity, setStockQuantity] = useState('');
+
   useEffect(() => {
-    api.get("/raw-materials")
+    loadMaterials();
+  }, []);
+
+  const loadMaterials = () => {
+    api.get("/raw_materials")
       .then(response => {
         setMaterials(response.data);
       })
@@ -16,7 +24,24 @@ function RawMaterials() {
       .finally(() => {
         setLoading(false);
       });
-  }, []);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+      
+    api.post('/raw_materials', {
+      name,
+      stock_quantity: Number(stockQuantity)
+    })
+    .then(() => {
+      setName('');
+      setStockQuantity('');
+      loadMaterials(); // recarrega lista
+    })
+    .catch(error => {
+      console.error('Error creating raw material:', error);
+    });
+  };
 
   if (loading) {
     return <p>Loading...</p>;
@@ -25,6 +50,30 @@ function RawMaterials() {
   return (
     <div>
       <h2>Raw Materials</h2>
+
+      <h3>Create Raw Material</h3>
+
+      <form onSubmit={handleSubmit}>
+        <input
+          type="text"
+          placeholder="Name"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          required
+        />
+
+        <input
+          type="number"
+          placeholder="Stock Quantity"
+          value={stockQuantity}
+          onChange={(e) => setStockQuantity(e.target.value)}
+          required
+        />
+
+        <button type="submit">Save</button>
+      </form>
+
+      <hr />
 
       <table border="1" cellPadding="8">
         <thead>
