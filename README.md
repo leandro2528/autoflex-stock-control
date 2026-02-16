@@ -56,6 +56,7 @@ The API was tested using Insomnia.
 ![Insomnia GET](./images/img01.png)
 ![Insomnia GET](./images/img02.png)
 ![Insomnia GET](./images/img03.png)
+![System Diagram](images/img01.png)
 
 
 ## Run the Project
