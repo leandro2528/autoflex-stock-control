@@ -1,9 +1,6 @@
 const pool = require('../config/database');
 const { getProducibleProducts } = require('../models/product.model');
-const {
-  createProduct,
-  insertProductMaterials
-} = require('../models/product.model');
+const { createProduct, insertProductMaterials } = require('../models/product.model');
 
 const createProductWithMaterials = async (data) => {
   const client = await pool.connect();
@@ -28,7 +25,7 @@ const createProductWithMaterials = async (data) => {
     client.release();
   }
 };
-//Chaama model
+//Chama model
 const { getAllProductsWithMaterials } = require('../models/product.model');
 
 const getProducts = async () => {
